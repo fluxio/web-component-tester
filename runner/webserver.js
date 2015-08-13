@@ -80,6 +80,11 @@ module.exports = function(wct) {
     options.webserver.webRunnerPath    = urlPrefix + '/generated-index.html';
     options.webserver.webRunnerContent = INDEX_TEMPLATE(options);
 
+    if (!options.persistent) {
+      console.log('Enabling browser-side request caching in single-run mode.');
+      DEFAULT_HEADERS = {};
+    }
+
     done();
   });
 
